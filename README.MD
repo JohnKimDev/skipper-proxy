@@ -23,7 +23,7 @@ req.file('file')
   adapter: require('skipper-proxy'),
   url: 'https://example.com',   // REQUIRED: Request server URL
   method: 'put',                // OPTIONAL: Default = 'put'
-  maxBytes: -1,                 // OPTIONAL: Maximum bytes to upload ( -1 = unlimited) Default = -1
+  maxBytes: 1000 * 1000 * 5,    // OPTIONAL: Maximum bytes to upload
   fieldName: 'file',            // OPTIONAL: Proxy form data field name. Default = 'file'
   retries: 2,                   // OPTIONAL: Number of request retries on failure. Defeault = 2
   headers: { <key> : <value> }  // OPTIONAL: Request headers
@@ -43,7 +43,7 @@ req.file('file')
 |-----------    |:----------:|---------|
 | `url`         | ((string)) | A `REQUIRED` parameter of the host or domain/IP.|
 | `method`      | ((string)) | An optional parameter for request method. Default value : `'put'`|
-| `maxBytes`    | ((number)) | An optional parameter for maximum bytes to upload. -1 = unlimited Default value :`-1`|
+| `maxBytes`    | ((number)) | An optional parameter for maximum bytes to upload.|
 | `fieldName`   | ((string)) | An optional parameter for proxy form data field name. Default value :`'file'`|
 | `retries`     | ((number)) | An optional parameter for number of request retries on failure. Default value : `2`|
 | `headers`     | ((object)) | An optional parameter for header objects|

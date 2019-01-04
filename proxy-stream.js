@@ -26,7 +26,7 @@ Parser.prototype._write = function (chunk, enc, cb) {
     this.bodyLength += chunk.length;
 
     // check for maxBytes allowed for upload, as we get the chunks so we don't waste time to gather all chunk before checking
-    if (this.options.maxBytes > 0 && this.bodyLength > this.options.maxBytes) {
+    if (this.bodyLength > this.options.maxBytes) {
         var maxUploadError = new Error('Max upload size exceeded.');
         maxUploadError.code = 'E_EXCEEDS_UPLOAD_LIMIT';
         this.emit('E_EXCEEDS_UPLOAD_LIMIT', maxUploadError);
