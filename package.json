@@ -1,11 +1,9 @@
 {
   "name": "skipper-proxy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Skipper adapter to proxy the upstream to a remote server",
   "main": "index.js",
-  "scripts": {
-    "test": "node -e \"require('skipper-adapter-tests')({module: require('./')});\""
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git@github.com:JohnKimDev/skipper-proxy.git"
@@ -23,9 +21,7 @@
     "url": "https://github.com/JohnKimDev/skipper-proxy/issues"
   },
   "homepage": "https://github.com/JohnKimDev/skipper-proxy#readme",
-  "devDependencies": {
-    "skipper-adapter-tests": "~2.0.0"
-  },
+  "devDependencies": {},
   "dependencies": {
     "flushwritable": "^1.0.0",
     "form-data": "~2.3.3",
