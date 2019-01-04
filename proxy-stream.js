@@ -62,18 +62,30 @@ Parser.prototype._flush = function (callback) {
  */
 Parser.prototype.__upload = function (chunk, cb) {
     var form = new FormData();
-    form.append(this.options.fieldName, chunk);
+    form.append(this.options.fieldName, chunk, this.options.filename);
 
-    got(this.options.url, {
+    var req = got(this.options.url, {
         body: form,
         method: this.options.method,
         headers: this.options.headers,
-        retries: this.options.retries
+        retries: this.options.retries,
+        stream: true
+    });
+
+    req.on('request', request => {
+        // console.log('request', request);
+    });
+
+    req.on('uploadProgress', progress => {
+        // console.log('progress', progress);
     })
-    .then(res => {
+
+    req.on('response', response => {
+        // console.log('response', response)
         cb();
-    })
-    .catch(err => {
+    });
+
+    req.on('error', err => {
         cb(err);
-    })
+    });
 };
