@@ -16,7 +16,7 @@ module.exports = function SkipperProxyStream(options) {
   options = _.defaults(options, {
     url: '',            // REQUIRED. No Default
     method: 'put',
-    maxBytes: -1,       // -1 = unlimit
+    maxBytes: -1,       // -1 = unlimited
     fieldName: 'file',
     retries: 2,
     headers: {},

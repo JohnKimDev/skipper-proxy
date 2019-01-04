@@ -1,6 +1,6 @@
 {
   "name": "skipper-proxy",
-  "version": "2.8.0",
+  "version": "1.0.0",
   "description": "Skipper adapter to proxy the upstream to a remote server",
   "main": "index.js",
   "scripts": {

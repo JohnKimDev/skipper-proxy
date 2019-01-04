@@ -4,8 +4,6 @@
 
 Proxy upload stream to another server using [skipper](https://github.com/balderdashy/skipper) and [got](https://github.com/sindresorhus/got)
 
-
-
 ## Installation
 
 ```
@@ -23,9 +21,12 @@ Also make sure you have skipper [installed as your body parser](http://beta.sail
 req.file('file')
 .upload({
   adapter: require('skipper-proxy'),
-  url: 'https://example.com',
-  method: 'put',                // OPTIONAL : Default = 'put'
-  headers: { <key> : <value> } // OPTIONAL
+  url: 'https://example.com',   // REQUIRED: Request server URL
+  method: 'put',                // OPTIONAL: Default = 'put'
+  maxBytes: -1,                 // OPTIONAL: Maximum bytes to upload ( -1 = unlimited) Default = -1
+  fieldName: 'file',            // OPTIONAL: Proxy form data field name. Default = 'file'
+  retries: 2,                   // OPTIONAL: Number of request retries on failure. Defeault = 2
+  headers: { <key> : <value> }  // OPTIONAL: Request headers
 }, function whenDone(err, uploadedFiles) {
   if (err) {
      return res.negotiate(err); 
@@ -40,8 +41,12 @@ req.file('file')
 
 | Option        | Type       | Details |
 |-----------    |:----------:|---------|
-| `url`         | ((string)) | A required parameter of the host or domain/IP.|
-| `method` | ((string)) | An optional parameter for request method. Default value :`put`|
+| `url`         | ((string)) | A `REQUIRED` parameter of the host or domain/IP.|
+| `method`      | ((string)) | An optional parameter for request method. Default value : `'put'`|
+| `maxBytes`    | ((number)) | An optional parameter for maximum bytes to upload. -1 = unlimited Default value :`-1`|
+| `fieldName`   | ((string)) | An optional parameter for proxy form data field name. Default value :`'file'`|
+| `retries`     | ((number)) | An optional parameter for number of request retries on failure. Default value : `2`|
+| `headers`     | ((object)) | An optional parameter for header objects|
 
 
 ## License
