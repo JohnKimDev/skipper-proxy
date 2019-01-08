@@ -4,6 +4,17 @@
 
 Proxy upload stream to another server using [skipper](https://github.com/balderdashy/skipper) and [got](https://github.com/sindresorhus/got)
 
+If you want to proxy upload stream to other server on fly using Skipper, this is the Skipper adapter for you. 
+
+Things you can do with `Skipper-Proxy` adater
+
+* Proxy upload stream without writing a file to a server.  
+[Browser]--(File Upload)-->[Server 1]--(Proxy File Upload)-->[Server 2]
+* Change the request method (PUT, POST, PATCH, HEAD) & form field name when proxy to the remote server.
+* Add additional headers to the upload streams 
+
+From the proxy server, you can treat the upload stream as if the upload is directly from a browser.
+
 ## Installation
 
 ```
@@ -12,21 +23,21 @@ $ npm install skipper-proxy --save
 
 Also make sure you have skipper [installed as your body parser](http://beta.sailsjs.org/#/documentation/concepts/Middleware?q=adding-or-overriding-http-middleware).
 
-> Skipper is installed by default in [Sails](https://github.com/balderdashy/sails) v0.10.
+> Skipper is installed by default in [Sails](https://github.com/balderdashy/sails) v0.10 and above.
 
 
 ## Usage
 
 ```javascript
-req.file('file')
+req.file('file') // <-- the fieldname here is for a browser to the server 1
 .upload({
   adapter: require('skipper-proxy'),
-  url: 'https://example.com',   // REQUIRED: Request server URL
+  url: 'https://example.com',   // REQUIRED: Proxy server URL
   method: 'put',                // OPTIONAL: Default = 'put'
   maxBytes: 1000 * 1000 * 5,    // OPTIONAL: Maximum bytes to upload
-  fieldName: 'file',            // OPTIONAL: Proxy form data field name. Default = 'file'
+  fieldName: 'file',            // OPTIONAL: Form data field name for the proxy server. Default = 'file'
   retries: 2,                   // OPTIONAL: Number of request retries on failure. Defeault = 2
-  headers: { <key> : <value> }  // OPTIONAL: Request headers
+  headers: { <key> : <value> }  // OPTIONAL: Request headers to the proxy server
 }, function whenDone(err, uploadedFiles) {
   if (err) {
      return res.negotiate(err); 
