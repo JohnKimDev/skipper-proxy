@@ -29,7 +29,7 @@ Also make sure you have skipper [installed as your body parser](http://beta.sail
 ## Usage
 
 ```javascript
-req.file('file') // <-- the fieldname here is for a browser to the server 1
+req.file('file') // <-- the fieldname from a browser upload
 .upload({
   adapter: require('skipper-proxy'),
   url: 'https://example.com',   // REQUIRED: Proxy server URL
